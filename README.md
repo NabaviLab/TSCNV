@@ -13,7 +13,7 @@
 
 ## **Method:**
 
-##### preparing the data: base-level read-count of the exonic regions of both sample and control data using samtools and BEDTools
+##### Preparing the data: base-level read-count of the exonic regions of both sample and control data using samtools and BEDTools
 
 ```
  $ samtools view -bh -L exom.bed tumor.bam > tumor_filteredexon.bam
@@ -28,3 +28,17 @@
  $ awk '{print $3}' normal_chr1.cov > normalreads.txt
 
 ```
+
+##### Removing outliers using Hampel identifier
+```
+$ python hampel.py
+```
+##### Applying Iterative Taut String to detect change points
+```
+$ python TS.py
+```
+##### Removing false possitives using Pettitt test
+```
+$ python Pettitt.py
+```
+
