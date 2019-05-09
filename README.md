@@ -2,13 +2,13 @@
 
 ## **Input:**
 
-- Sorted BAM files of the tumour and control (matched normal) samples
+#### - Sorted BAM files of the tumour and control (matched normal) samples
 
-- Duplicate reads must be removed from BAM files
+#### - Duplicate reads must be removed from BAM files
 
 ## **Output:**
 
-- Copy number variation segments
+#### - Copy number variation segments
 
 
 ## **Method:**
