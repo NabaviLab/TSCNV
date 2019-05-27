@@ -29,7 +29,7 @@
 
 ```
 
-%##### Removing outliers using Hampel identifier
+\*##### Removing outliers using Hampel identifier
 ```
 %$ python hampel.py
 ```
