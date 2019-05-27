@@ -29,16 +29,4 @@
 
 ```
 
-##### Removing outliers using Hampel identifier
-```
-<!--- -->$ python hampel.py
-```
-<!--- -->##### Applying Iterative Taut String to detect change points
-```
-<!--- -->$ python TS.py
-```
-<!--- -->##### Removing false possitives using Pettitt test
-```
-<!--- -->$ python Pettitt.py
-```
 
