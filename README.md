@@ -33,13 +33,36 @@
 # **Copy number variation detection for Single-cell sequencing data**
 ## **Input:**
 
-#### - Sorted BAM files of cell
+#### - fastq files of cells
 
 ## **Output:**
 
 #### - Copy number variation segments
 
 ## **Preprocessing:**
+
+
+
+$ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 0_1.fq 0_2.fq > 0.sam
+
+
+$ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 1_1.fq 1_2.fq > 1.sam
+
+$ samtools sort -O sam -o 0.sam -T "TMP" 0.sam
+$ samtools sort -O sam -o 1.sam -T "TMP" 1.sam
+
+$ samtools view  -hbS 0.sam > 0.bam
+$ samtools view -hbS 1.sam > 1.bam
+
+
+$ samtools merge cell.bam 0.bam 1.bam -f
+
+$ samtools sort -o cell.sorted.beforedup.bam cell.bam
+$ samtools rmdup cell.sorted.beforedup.bam cell.sorted.bam
+$ samtools index cell.sorted.bam
+
+
+
 
 $ computeGCBias -b sorted.bam --effectiveGenomeSize 2864785220 -g hg19.2bit --GCbiasFrequenciesFile freq.txt -l 200
 
