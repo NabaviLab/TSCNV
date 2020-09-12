@@ -1,5 +1,5 @@
 
-function [F,beg] = DetectFirstCP(R, epsilon)
+function [F,Firstseg] = DetectFirstCP(R, epsilon)
 	N = length(R);
 	if N<=1, F=R; return; end;
 	F = zeros(size(R)); 
@@ -160,5 +160,5 @@ function [F,beg] = DetectFirstCP(R, epsilon)
 	     	end
         end
     end
-    beg=changepoints(changepoints~=1);
+    Firstseg=changepoints(changepoints~=1);
 end	
