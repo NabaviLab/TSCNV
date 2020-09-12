@@ -37,6 +37,6 @@ for g=1:size(ipts,1)
     logipt(g)=mean(mm(ipts(g,1):ipts(g,2)));
    
 end
-CNVlist = table(start',stop',logcopR','VariableNames',{'start' 'stop' 'logcopR'});
+CNVlist = table(start',stop',logcopR','VariableNames',{'start' 'stop' 'Copynumber'});
 
 end
