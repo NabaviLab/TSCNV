@@ -31,3 +31,9 @@
 
 
 # **Copy number variation detection for Single-cell sequencing data**
+
+## **Preprocessing:**
+
+## **Segmentation:**
+
+## **Cross-cell analysis:**
