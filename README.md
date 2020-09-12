@@ -31,8 +31,44 @@
 
 
 # **Copy number variation detection for Single-cell sequencing data**
+## **Input:**
+
+#### - Sorted BAM files of cell
+
+## **Output:**
+
+#### - Copy number variation segments
 
 ## **Preprocessing:**
+
+$ computeGCBias -b sorted.bam --effectiveGenomeSize 2864785220 -g hg19.2bit --GCbiasFrequenciesFile freq.txt -l 200
+
+$ correctGCBias -b sorted.bam --effectiveGenomeSize 2864785220 -g hg19.2bit --GCbiasFrequenciesFile freq.txt -o gc_correct.bam
+
+$ samtools view -b -q 37 -o gc_correct-filtered37.bam gc_correct${j}.bam
+
+$ bamToBed -i gc_correct${j}-filtered37.bam > /labs/Nabavi/Fatimahome/singlecelldata/simulated/${ploidy}/TSCNV/bedfiles/gc_correct-filtered37.bed
+
+$ awk '{print $1="chr"$1 "\t" $2}' gc_correct${j}-filtered37.bed > /gc_correct-filtered37-pos.txt
+
+$ samtools view -H gc_correct-filtered37.bam  | grep -P "@SQ\tSN:" | sed 's/@SQ\tSN://' | sed 's/\tLN:/\t/' > genome.bed
+
+$ sort -k1,1V genome.bed > s-genome.bed
+
+$ bedtools makewindows -g s-genome.bed -w W  -i srcwinnum >  windows.bed
+
+$ bedtools coverage -abam gc_correct-filtered37.bam -b windows.bed > cov.bed
+
+$ bedtools groupby -i cov.bed -g 1,2,3 -c 13 > groupby.cov.bed
+
+$ awk '($1!="MT") &&($1!="Y")&&($1!="X")' groupby.cov.bed > groupby22.cov.bed
+$ samtools index gc_correct-filtered37.bam 
+$ bedtools multicov -bams gc_correct-filtered37.bam -bed windows.bed > readcounts.bed
+
+
+Rscript normalize.R 
+
+$ awk '($2=="chr1")||($2=="chr2")||($2=="chr3")||($2=="chr4")||($2=="chr5")||($2=="chr6")||($2=="chr7")||($2=="chr8")||($2=="chr9")||($2=="chr10")||($2=="chr11")||($2=="chr12")||($2=="chr13")||($2=="chr14")||($2=="chr15")||($2=="chr16")||($2=="chr17")||($2=="chr18")||($2=="chr19")||($2=="chr20")||($2=="chr21")||($2=="chr22")' readcounts.bed > readcount22.bed
 
 ## **Segmentation:**
 
