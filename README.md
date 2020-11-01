@@ -39,7 +39,7 @@
 
 #### - Copy number variation segments
 
-## **Preprocessing:**
+
 
 
 
@@ -98,6 +98,4 @@ $ bedtools multicov -bams gc_correct-filtered37.bam -bed windows.bed > readcount
 $ Rscript normalize.R 
 
 
-## **Segmentation:**
 
-## **Cross-cell analysis:**
