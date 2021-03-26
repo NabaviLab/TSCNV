@@ -2,6 +2,7 @@ import math
 import statistics
 
 from DetectFirstCP import DetectFirstCP
+from astropy.table import Table
 import numpy as np
 
 def IterativeTS(R, epsilon):
@@ -12,7 +13,7 @@ def IterativeTS(R, epsilon):
     while len(mm) > 0:
         epsilon = math.sqrt(statistics.variance(mm) * 2 * math.log(len(mm)))
         F,beg = DetectFirstCP(mm, epsilon)
-        mm = n[beg+pos[-1]:np.size(R, 1)] # np.size(R) returns size of first array in 2D array R
+        mm = n[beg+pos[-1]:np.size(R, 1)]
         pos = pos + [beg + pos[-1]]
         it += 1
         s = F[0:beg]
@@ -46,5 +47,5 @@ def IterativeTS(R, epsilon):
     for g in range(1, np.size(ipts,1)):
         logipt[g-1] = np.mean(mm[ipts[g-1,0]:ipts[g-1,1]])
     
-    # CNVlist = table(start',stop',logcopR','VariableNames', {'start' 'stop' 'Copynumber'});
-    # return F, CNVlist
+    CNVList = Table([start, stop, logcopR], names=('start', 'stop', 'copynumber'))
+    return F, CNVList
