@@ -47,5 +47,5 @@ def IterativeTS(R, epsilon):
     for g in range(1, np.size(ipts,1)):
         logipt[g-1] = np.mean(mm[ipts[g-1,0]:ipts[g-1,1]])
     
-    CNVList = Table([start, stop, logcopR], names=('start', 'stop', 'copynumber'))
+    CNVList = Table([start, stop, logcopR], names=('Start', 'Stop', 'Copynumber'))
     return F, CNVList
