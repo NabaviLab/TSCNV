@@ -31,19 +31,18 @@
 
 ```
 
-
+# SCTSCNV
 # **Copy number variation detection for Single-cell sequencing data**
-## **Input:**
 
+## **Input:**
 #### - fastq files of cells
 
 ## **Output:**
-
 #### - Copy number variation segments
 
 
 
-
+#### **Method:**
 ## **Preprocessing:**
 $ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 0_1.fq 0_2.fq > 0.sam
 
@@ -102,6 +101,7 @@ $ bedtools multicov -bams gc_correct-filtered37.bam -bed windows.bed > readcount
 Above are the MATLAB and Python Versions of the code. 
 
 $python IterativeTS.py
+
 $python IterativeTS.py
 
 
