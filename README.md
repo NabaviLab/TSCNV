@@ -32,18 +32,18 @@
 ```
 
 # SCTSCNV
-# **Copy number variation detection for Single-cell sequencing data**
+## **Copy number variation detection for Single-cell sequencing data**
 
 ## **Input:**
-#### - fastq files of cells
+### - fastq files of cells
 
 ## **Output:**
-#### - Copy number variation segments
+### - Copy number variation segments
 
 
 
-# **Method:**
-## **Preprocessing:**
+## **Method:**
+### **Preprocessing:**
 $ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 0_1.fq 0_2.fq > 0.sam
 
 $ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 1_1.fq 1_2.fq > 1.sam
@@ -96,7 +96,7 @@ $ samtools index gc_correct-filtered37.bam
 
 $ bedtools multicov -bams gc_correct-filtered37.bam -bed windows.bed > readcounts.bed
 
-## **Segmentation:**
+### **Segmentation:**
 
 Above are the MATLAB and Python Versions of the code. 
 
