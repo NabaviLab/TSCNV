@@ -97,7 +97,7 @@ Above are the MATLAB and Python Versions of the code.
 ```
 $python IterativeTS.py
 
-$python IterativeTS.py
+$python pettitt.py
 ```
 
 
