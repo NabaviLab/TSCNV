@@ -65,13 +65,9 @@ $ samtools rmdup cell.sorted.beforedup.bam cell.sorted.bam
 
 $ samtools index cell.sorted.bam
 
-
-
-
 $ computeGCBias -b sorted.bam --effectiveGenomeSize 2864785220 -g hg19.2bit --GCbiasFrequenciesFile freq.txt -l 200
 
 $ correctGCBias -b sorted.bam --effectiveGenomeSize 2864785220 -g hg19.2bit --GCbiasFrequenciesFile freq.txt -o gc_correct.bam
-
 
 $ samtools view -b -q 37 -o gc_correct-filtered37.bam gc_correct${j}.bam
 
@@ -79,13 +75,11 @@ $ bamToBed -i gc_correct${j}-filtered37.bam > /labs/Nabavi/Fatimahome/singlecell
 
 $ awk '{print $1="chr"$1 "\t" $2}' gc_correct${j}-filtered37.bed > /gc_correct-filtered37-pos.txt
 
-
 $ samtools view -H gc_correct-filtered37.bam  | grep -P "@SQ\tSN:" | sed 's/@SQ\tSN://' | sed 's/\tLN:/\t/' > genome.bed
 
 $ sort -k1,1V genome.bed > s-genome.bed
 
 $ bedtools makewindows -g s-genome.bed -w W  -i srcwinnum >  windows.bed
-
 
 $ bedtools coverage -abam gc_correct-filtered37.bam -b windows.bed > cov.bed
 
