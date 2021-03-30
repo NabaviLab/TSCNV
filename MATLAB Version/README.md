@@ -95,7 +95,6 @@ $ samtools index gc_correct-filtered37.bam
 
 $ bedtools multicov -bams gc_correct-filtered37.bam -bed windows.bed > readcounts.bed
 
-$ Rscript normalize.R 
 
 
 
