@@ -42,7 +42,7 @@
 
 
 
-#### **Method:**
+# **Method:**
 ## **Preprocessing:**
 $ bwa mem -t $processor -r  "@RG\tID:singlecell\tSM:singlecell" $ref 0_1.fq 0_2.fq > 0.sam
 
