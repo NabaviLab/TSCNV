@@ -5,14 +5,14 @@ pos=0;
 F=[];
 mm=R;
 while length(mm)>0 
-epsilon=sqrt(var(mm)*2*log(length(mm))); 
-[F,beg] = DetectFirstCP(mm, epsilon) 
-mm=n((beg+pos(end)+1):length(R));
-pos=[pos,(beg+pos(end))];
-it=it+1;
-pos;
-s=F(1:beg);
-F=[F,s];
+    epsilon=sqrt(var(mm)*2*log(length(mm))); 
+    [F,beg] = DetectFirstCP(mm, epsilon) 
+    mm=n((beg+pos(end)+1):length(R));
+    pos=[pos,(beg+pos(end))];
+    it=it+1;
+    pos;
+    s=F(1:beg);
+    F=[F,s];
 end
 F=[F,repmat(mean(R((length(F)+1):end)),1,(length(n)-length(F)))];
 pos=find(abs(diff(F))>0.1);
