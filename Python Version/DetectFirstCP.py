@@ -58,7 +58,8 @@ def DetectFirstCP(R, epsilon):
             if seglow == segnum:
                 while ((F_lastlow >= F_up_first) and (segnum < segup)):
                     segnum += 1
-                    F[indsegnum-1:firstupind[segnum-1]-1] = F_up_first
+                    Flist = [F_up_first] * len(F[indsegnum-1:firstupind[segnum-1]-1])
+                    F[indsegnum-1:firstupind[segnum-1]-1] = Flist
                     F_lastlow = (F_lastlow + (F_lastlow - F_up_first) *
 			    		        ((firstupind[segnum-1] - indsegnum) / (i - firstupind[segnum-1]+1)))
                     indsegnum = firstupind[segnum-1]
@@ -115,13 +116,14 @@ def DetectFirstCP(R, epsilon):
     else:
         F_lastlow += (R[i-1] + epsilon - F_lastlow) / (i - firstlowind[seglow-1]+1)
         F[indsegnum-1] = F_low_first
-        while ((seglow>segnum) and (F_lastlow>=F(firstlowind(seglow-1)))):
+        while ((seglow>segnum) and (F_lastlow>=F[firstlowind[seglow-2]-1])):
             seglow -= 1
             F_lastlow = (F[firstlowind[seglow-1]-1] + (F_lastlow - F[firstlowind[seglow-1]-1]) *
         		((i - firstlowind[seglow]+1) / (i - firstlowind[seglow-1]+1)))
         if seglow == segnum:
             if F_up_first >= F_lastlow:
-                F[indsegnum-1:i] = F_lastlow
+                Flist = [F_lastlow] * len(F[indsegnum-1:i])
+                F[indsegnum-1:i] = Flist
             else:
                 F_lastup += (R[i-1] - epsilon - F_lastup) / (i - firstupind[segup-1]+1)
                 F[indsegnum-1] = F_up_first
