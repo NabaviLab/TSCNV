@@ -14,8 +14,6 @@ while length(mm)>0
     s=F(1:beg);
     F=[F,s];
 end
-F=[F,repmat(mean(R((length(F)+1):end)),1,(length(n)-length(F)))];
-pos=find(abs(diff(F))>0.1);
 ipt=[pos];
 in=find(diff(ipt)<100);
 ipt(in)=[];
